@@ -11,12 +11,6 @@ class Flowers implements Flowerable {
     private NameFlowers nameFlower;
 
     Flowers(){
-        getHeightFlower();
-        getPriceFlower();
-        getDateOfCutting();
-        getColorFlower();
-        getNameFlower();
-
     }
 
 
