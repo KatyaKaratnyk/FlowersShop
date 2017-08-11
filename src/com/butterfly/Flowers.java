@@ -1,11 +1,13 @@
 package com.butterfly;
 
 import java.awt.*;
+import java.io.Closeable;
 import java.time.LocalDate;
+import java.util.zip.DataFormatException;
 
 class Flowers implements Flowerable {
     private java.awt.Color colorFlower;
-    private String dateOfCutting;
+    private LocalDate dateOfCutting;
     private double heightFlower;
     private double priceFlower;
     private NameFlowers nameFlower;
@@ -39,18 +41,23 @@ class Flowers implements Flowerable {
         this.nameFlower = nameFlower;
     }
 
-    public String getDateOfCutting() {
-        return this.dateOfCutting;
+    public LocalDate getDateOfCutting() {
+
+            return this.dateOfCutting;
     }
 
     public void setDateOfCutting(String dateOfCutting) {
-        this.dateOfCutting = dateOfCutting;
+        try {
+            this.dateOfCutting = LocalDate.parse(dateOfCutting);
+        }
+        catch (java.time.format.DateTimeParseException e) {
+        System.out.println("You entered the wrong date format. Try this one: \"yyyy-mm-dd\" ");
+        System.exit(0);
+        }
     }
 
-    public long freshnessFlower() {
-        LocalDate dateFlower = LocalDate.parse(this.getDateOfCutting());
-        LocalDate today = LocalDate.now();
-        return today.toEpochDay() - dateFlower.toEpochDay();
+    public long freshnessFlower()  {
+            return LocalDate.now().toEpochDay() - this.getDateOfCutting().toEpochDay();
     }
 
     public double getHeightFlower() {
