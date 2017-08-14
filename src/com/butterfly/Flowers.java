@@ -5,45 +5,32 @@ import java.io.Closeable;
 import java.time.LocalDate;
 import java.util.zip.DataFormatException;
 
-class Flowers implements Flowerable {
-    private java.awt.Color colorFlower;
+class Flowers extends FlowerAble {
     private LocalDate dateOfCutting;
-    private double heightFlower;
-    private double priceFlower;
-    private NameFlowers nameFlower;
+    private double height;
+    private String name;
 
     Flowers(){
+
     }
-
-
-    Flowers(NameFlowers nameFlower, String dateOfCutting, double heightFlower, double priceFlower, Color colorFlower) {
-        setNameFlower(nameFlower);
+    Flowers(NameFlower nameFlower, String dateOfCutting, double heightFlower, double priceFlower, Color colorFlower) {
+        setName(nameFlower);
         setDateOfCutting(dateOfCutting);
-        setHeightFlower(heightFlower);
-        setPriceFlower(priceFlower);
-        setColorFlower(colorFlower);
+        setHeight(heightFlower);
+        setPrice(priceFlower);
+        setColor(colorFlower);
     }
 
-    @Override
-    public Color getColorFlower() {
-        return this.colorFlower;
+    public String getName() {
+        return this.name;
     }
-
-    public void setColorFlower(Color colorFlower) {
-        this.colorFlower = colorFlower;
-    }
-
-    public NameFlowers getNameFlower() {
-        return this.nameFlower;
-    }
-
-    public void setNameFlower(NameFlowers nameFlower) {
-        this.nameFlower = nameFlower;
+    public void setName(NameFlower nameFlower) {
+        this.name = nameFlower.toString();
     }
 
     public LocalDate getDateOfCutting() {
 
-            return this.dateOfCutting;
+        return this.dateOfCutting;
     }
 
     public void setDateOfCutting(String dateOfCutting) {
@@ -51,31 +38,21 @@ class Flowers implements Flowerable {
             this.dateOfCutting = LocalDate.parse(dateOfCutting);
         }
         catch (java.time.format.DateTimeParseException e) {
-        System.out.println("You entered the wrong date format. Try this one: \"yyyy-mm-dd\" ");
-        System.exit(0);
+            System.out.println("You entered the wrong date format. Try this one: \"yyyy-mm-dd\" ");
+            System.exit(0);
         }
     }
 
     public long freshnessFlower()  {
-            return LocalDate.now().toEpochDay() - this.getDateOfCutting().toEpochDay();
+        return LocalDate.now().toEpochDay() - this.getDateOfCutting().toEpochDay();
     }
 
-    public double getHeightFlower() {
-        return this.heightFlower;
+    public double getHeight() {
+        return this.height;
     }
 
-    public void setHeightFlower(double heightFlower) {
-        this.heightFlower = heightFlower;
+    public void setHeight(double heightFlower) {
+        this.height = heightFlower;
     }
-
-    public double getPriceFlower() {
-        return this.priceFlower;
-    }
-
-    public void setPriceFlower(double priceFlower) {
-        this.priceFlower = priceFlower;
-    }
-
-    enum NameFlowers {Rose, Lily, Tulip, Orchid}
 
 }

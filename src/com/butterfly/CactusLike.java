@@ -2,55 +2,33 @@ package com.butterfly;
 
 import java.awt.*;
 
-public class CactusLike implements Flowerable {
+public class CactusLike extends FlowerAble {
 
-    private java.awt.Color colorCactus;
-    private FormCactus formCactus;
-    private double priceCactus;
-    private NameCactus nameCactus;
+    private FormPlant formCactus;
+    private String name;
+    CactusLike (){}
 
-    enum NameCactus {Cactus}
-    enum FormCactus {Round, Square, Longitudinally}
-
-    CactusLike (NameCactus nameCactus, FormCactus formCactus, double priceCactus, Color colorCactus) {
-        setNameCactus(nameCactus);
+    CactusLike (NameCactus nameCactus, FormPlant formCactus, double priceCactus, Color colorCactus) {
+        setName(nameCactus);
         setFormCactus(formCactus);
-        setPriceCactus(priceCactus);
-        setColorCactus(colorCactus);
+        setPrice(priceCactus);
+        setColor(colorCactus);
     }
 
-    @Override
-    public Color getColorFlower() {
-        return this.colorCactus;
-    }
-
-    public void setColorCactus(Color colorCactus) {
-        this.colorCactus = colorCactus;
-    }
-
-    @Override
-    public double getPriceFlower() {
-        return this.priceCactus;
-    }
-
-    public void setPriceCactus(double priceCactus) {
-        this.priceCactus = priceCactus;
-    }
-
-    public FormCactus getFormCactus() {
+    public FormPlant getFormCactus() {
         return this.formCactus;
     }
 
-    public void setFormCactus(FormCactus formCactus) {
+    public void setFormCactus(FormPlant formCactus) {
         this.formCactus = formCactus;
     }
 
-    public NameCactus getNameCactus() {
-        return this.nameCactus;
+    public String getName() {
+        return this.name;
     }
 
-    public void setNameCactus(NameCactus nameCactus) {
-        this.nameCactus = nameCactus;
+    public void setName(NameCactus nameCactus) {
+        this.name = nameCactus.toString();
     }
 
 }

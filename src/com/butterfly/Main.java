@@ -10,10 +10,10 @@ import java.util.*;
 public class Main {
     public static void main (String[] args) {
         Bouquet myBouquet = new Bouquet();
-        myBouquet.addFlower(new Flowers(Flowers.NameFlowers.Rose, "2017-01-05", 35.00, 0.99, Color.ORANGE));
-        myBouquet.addFlower(new Flowers(Flowers.NameFlowers.Lily, "2017-07-05", 35.001, 25.6, Color.PINK));
-        myBouquet.addFlower(new Flowers(Flowers.NameFlowers.Tulip, "2017-08-01", 35, 0.01, Color.CYAN));
-        myBouquet.addFlower(new CactusLike(CactusLike.NameCactus.Cactus, CactusLike.FormCactus.Round, 34.2, Color.green));
+        myBouquet.addFlower(new Flowers(NameFlower.Rose, "2017-01-05", 35.00, 0.99, Color.ORANGE));
+        myBouquet.addFlower(new Flowers(NameFlower.Lily, "2017-07-05", 35.001, 25.6, Color.PINK));
+        myBouquet.addFlower(new Flowers(NameFlower.Tulip, "2017-08-01", 35, 0.01, Color.CYAN));
+        myBouquet.addFlower(new CactusLike(NameCactus.Cactus, FormPlant.Round, 34.2, Color.green));
 
         System.out.println(String.format("Price our bouquet = %.3f UAH ", myBouquet.priceBouquet()));
 

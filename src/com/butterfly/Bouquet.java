@@ -1,57 +1,47 @@
 package com.butterfly;
 
 import java.awt.*;
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-class Bouquet {
-    ArrayList<Flowerable> flowers;
+class Bouquet<T extends FlowerAble> {
+    ArrayList<T> bouquet;
     Bouquet () {
-        flowers = new ArrayList<Flowerable>();
+        bouquet = new ArrayList<>();
     }
 
-    public void addFlower(Flowerable myFlower) {
-        flowers.add(myFlower);
+    public void addFlower(T myFlower) {
+        bouquet.add(myFlower);
     }
     public double priceBouquet() {
 
         double price =0;
-        for (Flowerable e : flowers) {
-            price = price+e.getPriceFlower();
+        for (FlowerAble e : bouquet) {
+            price = price+e.getPrice();
         }
         return price;
     }
 
+
     public Flowers maxFlowerHeight() {
         Flowers flow = new Flowers();
-        ArrayList<Flowers> bouquetWithoutCactus = new ArrayList<Flowers>();
-        for (Flowerable e : flowers) {
-            if (e.getClass().equals(Flowers.class)) {
-                bouquetWithoutCactus.add((Flowers) e);
-            }
-        }
-        for (Flowers e : bouquetWithoutCactus) {
-            if (e.getHeightFlower() > flow.getHeightFlower()) {
-                flow = e;
+        for (FlowerAble e : bouquet) {
+            if (e instanceof Flowers) {
+                if(((Flowers) e).getHeight()>flow.getHeight())  flow =(Flowers) e;
             }
         }
         return flow;
     }
 
     public long freshnessBouquet() {
-        ArrayList<Flowers> bouquetWithoutCactus = new ArrayList<Flowers>();
-        for (Flowerable e : flowers) {
-            if (e.getClass().equals(Flowers.class)) {
-                bouquetWithoutCactus.add((Flowers) e);
+        long days = 0;
+        for (FlowerAble e : bouquet) {
+            if (e instanceof Flowers) {
+                if(((Flowers) e).freshnessFlower()>days)  days =((Flowers) e).freshnessFlower();
             }
         }
-        long qtyDays = 0;
-        for (Flowers e : bouquetWithoutCactus) {
-            if(e.freshnessFlower()>qtyDays) {
-                qtyDays = e.freshnessFlower();
-            }
-        }
-        return qtyDays;
+        return days;
     }
 
     public void printFreshnessBouquet() {
@@ -59,42 +49,36 @@ class Bouquet {
     }
 
     public void printMaxFlowerHeight() {
-        System.out.println("The longest flower in your bouquet is: " + this.maxFlowerHeight().getNameFlower() + ". Its height is " + this.maxFlowerHeight().getHeightFlower() + " cm.");
+        System.out.println("The longest flower in your bouquet is: " + this.maxFlowerHeight().getName() + ". Its height is " + this.maxFlowerHeight().getHeight() + " cm.");
     }
 
     public String find(String name) {
-        String massage = "";
-        for (Flowerable e : flowers) {
-            if (e instanceof Flowers)
-                if (((Flowers) e).getNameFlower().toString().compareToIgnoreCase(name)==0) {
-                    massage = "There is a flower with that name in this bouquet";
-                    break;
-                } else massage = "There is no flower with that name in this bouquet";
-            if (e instanceof CactusLike) {
-                if (((CactusLike) e).getNameCactus().toString().compareToIgnoreCase(name)==0) {
-                    massage = "There is a flower with that name in this bouquet";
-                    break;
-                } else massage = "There is no flower with that name in this bouquet";
-            }
+        String message = "";
+        for (FlowerAble e : bouquet) {
+            if (e.getName().compareToIgnoreCase(name) == 0) {
+                message = "There is a flower with that name in this bouquet";
+                break;
+            } else message = "There is no flower with that name in this bouquet";
         }
-        return massage;
+        return message;
     }
 
+
     public String find(double price) {
-        String massage = "";
-        for (Flowerable e : flowers) {
-            if (e.getPriceFlower() == price) {
-                massage = "There is a flower with that price in this bouquet";
+        String message = "";
+        for (FlowerAble e : bouquet) {
+            if (e.getPrice() == price) {
+                message = "There is a flower with that price in this bouquet";
                 break;
-            } else massage = "There is no flower with that price in this bouquet";
+            } else message = "There is no flower with that price in this bouquet";
         }
-        return massage;
+        return message;
     }
 
     public String find(Color color) {
         String massage = "";
-        for (Flowerable e : flowers) {
-            if (e.getColorFlower().equals(color)) {
+        for (FlowerAble e : bouquet) {
+            if (e.getColor().equals(color)) {
                 massage = "There is a flower with that color in this bouquet";
                 break;
             } else massage = "There is no flower with that color in this bouquet";
