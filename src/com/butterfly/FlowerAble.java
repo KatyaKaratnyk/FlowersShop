@@ -23,4 +23,8 @@ public abstract class FlowerAble {
         this.price = price;
     }
     public abstract String getName();
+    public abstract double getHeight();
+    public abstract LocalDate getDateOfCutting();
+    public abstract FormPlant getFormPlant();
+    public abstract long getFreshness();
 }

@@ -43,7 +43,7 @@ class Flowers extends FlowerAble {
         }
     }
 
-    public long freshnessFlower()  {
+    public long getFreshness()  {
         return LocalDate.now().toEpochDay() - this.getDateOfCutting().toEpochDay();
     }
 
@@ -55,4 +55,8 @@ class Flowers extends FlowerAble {
         this.height = heightFlower;
     }
 
+    @Override
+    public FormPlant getFormPlant() {
+        return null;
+    }
 }

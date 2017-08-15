@@ -24,22 +24,18 @@ class Bouquet<T extends FlowerAble> {
     }
 
 
-    public Flowers maxFlowerHeight() {
-        Flowers flow = new Flowers();
+    public double maxFlowerHeight() {
+        double max = 0;
         for (FlowerAble e : bouquet) {
-            if (e instanceof Flowers) {
-                if(((Flowers) e).getHeight()>flow.getHeight())  flow =(Flowers) e;
-            }
+            if(e.getHeight()>max) max = e.getHeight();
         }
-        return flow;
+        return max;
     }
 
     public long freshnessBouquet() {
         long days = 0;
         for (FlowerAble e : bouquet) {
-            if (e instanceof Flowers) {
-                if(((Flowers) e).freshnessFlower()>days)  days =((Flowers) e).freshnessFlower();
-            }
+            if(e.getFreshness()>days) days = e.getFreshness();
         }
         return days;
     }
@@ -49,7 +45,7 @@ class Bouquet<T extends FlowerAble> {
     }
 
     public void printMaxFlowerHeight() {
-        System.out.println("The longest flower in your bouquet is: " + this.maxFlowerHeight().getName() + ". Its height is " + this.maxFlowerHeight().getHeight() + " cm.");
+        System.out.println("The longest flower in your bouquet has: " + this.maxFlowerHeight() + " cm.");
     }
 
     public String find(String name) {

@@ -1,25 +1,28 @@
 package com.butterfly;
 
 import java.awt.*;
+import java.time.LocalDate;
 
 public class CactusLike extends FlowerAble {
 
     private FormPlant formCactus;
     private String name;
-    CactusLike (){}
 
-    CactusLike (NameCactus nameCactus, FormPlant formCactus, double priceCactus, Color colorCactus) {
+    CactusLike() {
+    }
+
+    CactusLike(NameCactus nameCactus, FormPlant formCactus, double priceCactus, Color colorCactus) {
         setName(nameCactus);
-        setFormCactus(formCactus);
+        setFormPlant(formCactus);
         setPrice(priceCactus);
         setColor(colorCactus);
     }
 
-    public FormPlant getFormCactus() {
+    public FormPlant getFormPlant() {
         return this.formCactus;
     }
 
-    public void setFormCactus(FormPlant formCactus) {
+    public void setFormPlant(FormPlant formCactus) {
         this.formCactus = formCactus;
     }
 
@@ -31,4 +34,18 @@ public class CactusLike extends FlowerAble {
         this.name = nameCactus.toString();
     }
 
+    @Override
+    public double getHeight() {
+        return 0;
+    }
+
+    @Override
+    public LocalDate getDateOfCutting() {
+        return null;
+    }
+
+    @Override
+    public long getFreshness() {
+        return 0;
+    }
 }
